@@ -4,11 +4,15 @@
 
 
 
-#define CLK A0
-#define DT A1
-#define SW A2
-Encoder enc1(CLK, DT, SW);  // для работы c кнопкой
+#define CLK1 A0
+#define DT1 A1
+#define SW1 A2
+Encoder enc1(CLK1, DT1, SW1);  // для работы c кнопкой
 
+#define CLK2 15
+#define DT2 14
+//#define SW2 A2
+Encoder enc2(CLK2, DT2);
 
 
 const byte ROWS = 4; /* four rows */
@@ -33,9 +37,23 @@ void setup() {
 
   enc1.setType(TYPE2);    // Настройка Энкодера
   enc1.setPinMode(LOW_PULL);
+  enc2.setType(TYPE2);    // Настройка Энкодера
+  enc2.setPinMode(LOW_PULL);
 }
 
 
+void loop() {
+  enc1.tick();
+  enc2.tick();
+  
+  if (enc1.isLeft()) Serial.println("enc 1 left");
+  if (enc1.isRight()) Serial.println("enc 1 right");
+  if (enc2.isLeft()) Serial.println("enc 2 left");
+  if (enc2.isRight()) Serial.println("enc 2 right");
+
+}
+
+/*
 void loop(){
   enc1.tick();     
   if (enc1.isRight()) {
@@ -62,7 +80,4 @@ void loop(){
     Keyboard.releaseAll(); 
   }
 }
-/*
- * 
- * 123A
- */
+*/
