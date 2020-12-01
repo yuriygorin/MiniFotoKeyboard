@@ -1,8 +1,12 @@
+
+
+module keygen (KeyPad_Type = 1, Keys_count = 5)
+{
 // По середине либо есть мембранная клавиатура на 16, либо на 12, либо нет совсем мемранной клавиатуры
-KeyPad_Type = 0;// 0-No Pad, 1-3x4KeyPad, 2-4x4KeyPad
+//KeyPad_Type = 1;// 0-No Pad, 1-3x4KeyPad, 2-4x4KeyPad
 
 // Раздельные кнопки сбоку. Если кнопок нет, то и платы нет. Если от 1 до 6, то маленькая плата. Если от 7 до 9, то плата побольше.
-Keys_count = 5; 
+//Keys_count = 5; 
 
 Bottoms_step_mm = 2.54;
 Vert_distance_steps = 8 * Bottoms_step_mm;
@@ -69,6 +73,16 @@ translate([Knob_Horz_dimentions[KeyPad_Type]+Small_Knob_radius + Space, Vert_dis
 translate([Knob_Horz_dimentions[KeyPad_Type]+Small_Knob_radius + Space, -Vert_distance_steps,0])
     scale([20,20,20])
         import("Therm-encode-knob.stl");  
+}
+AllDrawStep = 170;
+translate([0,    0,0]) keygen(KeyPad_Type = 0, Keys_count = 0);
+translate([AllDrawStep,  0,0]) keygen(KeyPad_Type = 0, Keys_count = 3);
+translate([2*AllDrawStep,  0,0]) keygen(KeyPad_Type = 1, Keys_count = 0);
 
+translate([0,  AllDrawStep,0]) keygen(KeyPad_Type = 1, Keys_count = 3);
+translate([AllDrawStep,AllDrawStep,0]) keygen(KeyPad_Type = 1, Keys_count = 5);
+translate([2*AllDrawStep,AllDrawStep,0]) keygen(KeyPad_Type = 1, Keys_count = 8);
 
-
+translate([0,  2*AllDrawStep,0]) keygen(KeyPad_Type = 2, Keys_count = 2);
+translate([AllDrawStep,2*AllDrawStep,0]) keygen(KeyPad_Type = 2, Keys_count = 6);
+translate([2*AllDrawStep,2*AllDrawStep,0]) keygen(KeyPad_Type = 2, Keys_count = 9);
