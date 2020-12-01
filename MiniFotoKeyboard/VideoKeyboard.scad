@@ -29,7 +29,18 @@ translate([0,0,0])
 
 translate([-Space - KeyPad_Horz_dimentions[KeyPad_Type], 0, 0]) 
 { 
-    
+        if ((Keys_count <= 6) &&  (Keys_count > 0 ))
+    {
+        translate ([ -30/2 - Horz_distance_steps/2,  70/2,  0]) 
+            rotate([90, 0, 0]) 
+                import("Breadboard.STL");}
+        
+    if ((Keys_count <= 9) &&  (Keys_count > 6 ))
+    {
+        translate ([-70/2 - Horz_distance_steps/2,,  -70/2,  0]) 
+            rotate([90, 0, 0]) 
+                import("Breadboard_5x7.stl");}
+                
     if (Keys_count >= 1) {translate ([                      0,                    0,  0]) rotate([0, 0, 90]) import("Tact_with_head.stl");}
     if (Keys_count >= 2) {translate ([                      0, -Vert_distance_steps,  0]) rotate([0, 0, 90]) import("Tact_with_head.stl");}
     if (Keys_count >= 3) {translate ([                      0,  Vert_distance_steps,  0]) rotate([0, 0, 90]) import("Tact_with_head.stl");}
